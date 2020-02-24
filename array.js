@@ -81,3 +81,18 @@ var totallibros= personas.reduce(reducer,0)
 console.log(`En total todos tiene ${totallibros} libros`)
 
 
+//Almacenar array con Prompt 
+var news = []
+var count 
+console.log(news)
+for(var i=0;i<=3;i++){
+    var dato = prompt("Ingresa 4 datos")
+    count = news.push(dato);
+    console.log(news)
+}
+
+//console.log(news)
+
+
+
+
