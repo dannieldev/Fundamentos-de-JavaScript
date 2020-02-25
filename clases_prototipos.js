@@ -8,8 +8,12 @@ class People{
         this.apellido = apellido
         this.estatura = estatura
     }
-    saludar(){
-        console.log(`Hola me llamo ${this.nombre} ${this.apellido}`)
+    saludar(fn){
+        var {nombre,apellido} = this
+        console.log(`Hola me llamo ${nombre} ${apellido}`)
+        if(fn){
+            fn(nombre,apellido,false)
+        }
     }
     alto(){
         return  this.altura > 1.8
@@ -20,12 +24,26 @@ class Desarrollador extends People{
         //Super es el constructor del padre
         super(nombre,apellido,altura)
     }
-    saludar(){
-        console.log(`Hola , me llamo ${this.nombre} ${this.apellido} y soy Programador`)
+    saludar(fn){
+        //var nombre = this.nombre
+        //var apellido = this.apellido
+        var {nombre,apellido} = this
+        console.log(`Hola , me llamo ${nombre} ${apellido} y soy Programador`)
+        if(fn){
+            fn(nombre,apellido,true)
+        }
+    }
+}
+function responderSaludo(nombre, apellido,esDev){
+    console.log(`Buen dia ${nombre} ${apellido}`)
+    if (esDev){
+        console.log(`No sabia que eras desarrollador`)
     }
 }
 var dann = new People('Dann','cres',1.70)
-var frec = new People('Frec','Flezx',1.80)
+var kique = new Desarrollador('kique','lop',1.40)
+var frec = new Desarrollador('Frec','Flezx',1.80)
 dann.saludar()
-frec.saludar()
+kique.saludar(responderSaludo)
+frec.saludar(responderSaludo)
 frec.alto()
