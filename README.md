@@ -1,2 +1,11 @@
-# Fundamentos-de-JavaScript
-Curso de Platzi
+# Fundamentos de JavaScript
+Ejercicios basicos de javascript 
+
+```
+Examples
+```
+
+##Temas
+-Funciones 
+-Ciclos 
+-Array
