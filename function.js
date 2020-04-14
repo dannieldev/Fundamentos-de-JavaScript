@@ -18,3 +18,11 @@ function nombrex(n){
 
 nombrex(nombres)
 console.log(nombres)
+
+//Funcion Suma
+
+function suma(a,b){
+    console.log(a+b) 
+}
+
+suma(2,5)
