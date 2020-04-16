@@ -27,10 +27,10 @@ function divisionEntera(dividendo, divisor){
 
 */ 
 function diasFaltantes (dia, otroDia){
-    if(dia === otroDia){
-        return 0
+    if(dia === otroDia){  
+        return -1  //Caso base
     }
     return 1 + diasFaltantes(dia+1, otroDia)
 }
 
-console.log(diasFaltantes(1,7))
+console.log(diasFaltantes(2,5))
