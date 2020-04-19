@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "callback": "node src/callback/index.js",
-    "api": "node src/callback/api.js",
-    "promise": "node src/promise/index.js"
+    "api_callback": "node src/callback/api.js",
+    "promise": "node src/promise/index.js",
+    "api_promise": "node src/promise/api.js"
   },
   "keywords": [
     "callback",
