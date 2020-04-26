@@ -1,0 +1,53 @@
+*{
+    border: 0;
+    font-size: 20px;
+    
+}
+section.calcular{
+    text-align: center;
+    padding: 30px; 
+    margin: auto;
+    position: center;
+    background-color: aquamarine;
+    width: 50%;  
+}
+div.main{
+    display: flex;
+    flex-direction: column;
+}
+.inputs{
+    display: flex;   
+    width: 10%;
+    padding: 10px;
+}
+input.input-num{
+    border: 10px;
+    padding: 6px;
+}
+.numeros{
+
+}
+.controles{
+    
+}
+.operaciones{
+
+}
+.btn{
+    width: 55pt;
+    height: 55pt;
+    margin: 2pt;
+    background-color: rgb(15, 74, 85);
+    color: white;
+}
+.btn.retun,.btn.eliminar,.btn.resultado{
+    width: 80pt;
+}
+
+@media (max-width: 1000px) {
+    section.calcular{
+        margin: auto;
+        position: center;
+        width: 25rem;  
+    }
+}
