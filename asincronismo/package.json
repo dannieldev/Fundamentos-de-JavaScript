@@ -6,6 +6,7 @@
   "scripts": {
     "callback": "node src/callback/index.js",
     "api_callback": "node src/callback/api.js",
+    "unsplash_callback": "node src/callback/unsplash_api.js",
     "promise": "node src/promise/index.js",
     "api_promise": "node src/promise/api.js",
     "async": "node src/async/index.js",
@@ -20,6 +21,7 @@
   "author": "Daniel Dev",
   "license": "MIT",
   "dependencies": {
+    "unsplash-js": "^6.0.0",
     "xmlhttprequest": "^1.8.0"
   }
 }
