@@ -4,13 +4,15 @@
 // 1° CASO
 console.log('Hola Soy yo');
 [1,2,3].forEach(n=> console.log(n*2))
+/*---------------------------------------------------------*/
 
-// 1° CASO
+// 2° CASO
 const nombre = 'Frd'
 console.log('Hola mi nombre es Frd');
 `${nombre} es un desarrollador`
+/*---------------------------------------------------------*/
 
-// 1° CASO donde no deve ir punto y coma
+// 3° CASO donde no deve ir punto y coma
 /*
 function cacularDoble(numero){
     return; //ERROR
@@ -24,3 +26,14 @@ function cacularDoble(numero){
         original: numero,doble: numero*2
     }
 }
+/*---------------------------------------------------------*/
+
+//Caso 4
+function saludoColombiano(nombre){
+
+}
+saludoColombiano('Daniel'); //Punto y coma antes de  un IIFE Immediately-Invoked Function Expression
+
+(function(){
+
+ })();
