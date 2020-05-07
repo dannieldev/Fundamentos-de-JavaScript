@@ -119,7 +119,7 @@ c('Asignacion Global')
     dimeUnFramework()
     //Variable global
     //nombre = 'Angular'
-    window.nombre = 'Angular'
+    this.nombre = 'Angular'
     dimeUnFramework()
 })(console.log);
 ((c)=>{
@@ -156,3 +156,47 @@ c('Asignacion Global')
     }
     lenguaje.nombrar()
 })(console.log);
+//----------------------------------------------------------------------------------------------//
+///THIS EN EL SCOPE GLOBAL
+console.log(`this: ${this}`)
+//THIS EN EL SCOPE DE UNA FUNCION
+function whoIsThis(){
+    return this;
+}
+
+console.log(`whoIsThis() : ${whoIsThis()}`)
+
+//THIS EN EL SCOPE DE UNA FUNCION EN ESTRICT MODE
+//"use strict"
+function whoIsThisStrict(){
+    "use strict"
+    return this;
+}
+console.log(`whoIsThisStrict() : ${whoIsThisStrict()}`)
+//THIS EN EL CONTEXTO DE UN OBJETO
+const person ={
+    name: "Gabriel",
+    saludar: function(){
+        console.log(`Hola soy ${this.name}`)
+    }
+}
+//console.log(`person.saludar: ${person.saludar()}`)
+person.saludar()
+
+//THIS CUANDO SACAMOS A UNA FUNCION DE UN OBJETO
+
+const accion = person.saludar;
+accion()
+
+//THIS EN EL CONTEXTO DE UNA "CLASE"
+function Person(name){ //Una clase
+    //this = {} // this comienza con esto
+    this.name = name //Funciona como un constructor
+}
+
+Person.prototype.saludar = function(){
+    console.log(`Hola me llamo ${this.name}`)
+}
+
+const angela = new Person('Angela')
+angela.saludar()
