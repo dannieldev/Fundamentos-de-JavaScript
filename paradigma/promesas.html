@@ -69,7 +69,7 @@
           movieList.appendChild(listItem);
         });
       }
-      //PEticion una depues de la otra 
+      //Peticion una depues de la otra 
       async function getTopMoviesInSequence() {
         const ids = await getTopMoviesIds();
         const movies = [];
@@ -90,7 +90,7 @@
 
         return movies;
       }
-
+      //Pectcion de la primera que obtenemos
       async function getFastestTopMovie() {
         const ids = await getTopMoviesIds();
         const moviePromises = ids.map(id => getMovie(id));
