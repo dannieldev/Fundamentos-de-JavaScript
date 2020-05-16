@@ -1,3 +1,4 @@
+
 var intervalo = {
   valorMinimo: 3,
   valorMaximo: 7,
@@ -15,4 +16,3 @@ var intervalo = {
   }
 }
 intervalo.valoresContenidos = [5, 6, 2, 9, 3];
-console.log
