@@ -79,3 +79,32 @@ const riqui = fullName('Riqi','Jies')
 const nameless = DefaulName();
 console.log(riqui)
 console.log(nameless)
+
+//INTERFACES
+enum Colors{
+    rojo = "rojo",
+    verde = "verde"
+}
+interface Rectangulo{
+    ancho: number;
+    alto: number;
+    color?: Colors; // Dejarlo Opcional
+}
+
+let rect: Rectangulo = {
+    ancho: 34,
+    alto:34,
+    //color: Colors.verde,
+}
+//Calcular el area de un rectangulo usando interfaces
+function area(r:Rectangulo):number{
+    return r.alto * r.ancho;
+}
+
+const areReact = area(rect);
+console.log(areReact);
+
+rect.toString = function(){
+    return this.color ? `Un rectangulo ${this.color}`: `Un rectangulo`;
+} 
+console.log(rect.toString());
