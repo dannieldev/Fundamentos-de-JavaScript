@@ -45,4 +45,37 @@ comodin = {type:"asfd"};
 
 //Object
 let someObject = {type:"asfd"};
-let Object:object = {type:"asfd"};
+let Objects:object = {type:"asfd"};
+
+//FUNCIONES
+//Tyscript esta fuertemente tipado 
+//Poder asignar que tipo de valor entra o sale de la función
+function Addplus(a:number,b:number):number{ 
+    return a+b;
+}
+const sum = add(3,5);
+
+//Funciones que retornan otra funcion
+//Asignar valor que entra y sale de las funciones
+function createAddre (a:number): (number)=>number{ //valor de regreso una funcion
+    return function(b:number){
+        return a+b;
+    }
+}
+
+const AddFour = createAddre(5);
+const fourPlus = AddFour(6);
+
+
+//En caso de que no haya un paramtro (Agregando un ? para dejarlo en caso no se encuentra)
+function fullName(firstName:string, LastName?:string):string{
+    return `${firstName} ${LastName}`
+}
+function DefaulName(firstName:string ="Anonimo", LastName:string ="User"):string{
+    return `${firstName} ${LastName}`
+}
+
+const riqui = fullName('Riqi','Jies')
+const nameless = DefaulName();
+console.log(riqui)
+console.log(nameless)
