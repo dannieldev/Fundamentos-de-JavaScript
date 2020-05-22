@@ -1,1 +1,4 @@
-node_modules/
+asincronismo/node_modules
+typescript/node_modules
+typescript/dist
+typescript/.cache
