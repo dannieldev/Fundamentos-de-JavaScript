@@ -10,7 +10,7 @@
     "typescript": "^3.5.3"
   },
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html singleton/index.html"
   },
   "keywords": [],
   "author": "",
