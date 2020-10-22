@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: rgb(205, 110, 0);
+    text-shadow: 2px 2px 0 #49281f;
+}
+.allpick{
+    width: 400px;
+    padding: 10px;
+    text-align: center;
+}
+.pickcolor{
+    width: 70px;
+    height: 70px;
+}
+.button{
+    width: 100px;
+    background-color: white;
+    /* border: 1px rgb(218, 15, 15); */
+    border-radius: 5px;
+}
