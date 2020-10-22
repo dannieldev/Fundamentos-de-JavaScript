@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de tarjeta de Credito</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="text-header">
+        <h1>Bienvenido a BankyAky</h1>
+        <p>Transacciones electronicas facil y rapido</p>
+    </header>
+    <main class="main">
+        <div class="container-form">
+            <div class="form-texto">
+                <div class="form-centrado">
+                    <h2>BankyAky</h2>
+                    <p>Paga con menos Clips</p>
+                </div>
+                <img src="img/credito.png"/>
+            </div>
+            <form class="form" id="formulario"  name="fomulario" method="GET" action="#">
+                <p>Ingrese los datos tarjeta</p>
+                <div class="form-control">
+                    <label for="username">Número de la tarjeta de crédito</label>
+                    <input class="" id="numero" type="number" title="Número" value="" name="datos" ma
+                    autocomplete="off"  placeholder="Número" onKeyDown="limites(this,19);" onKeyUp="limites(this,19);"" required>
+                </div>
+                <div class="form-control">
+                    <label for="username">Nombre Completo</label>
+                    <input type="text" placeholder="Nombre" value="Daniel Crespin" required disabled>
+                </div>
+                <div class="form-control">
+                    <div class="fecha-cvc">
+                        <input id="fecha" type="text"  placeholder="MM/YY"  value="09/21" name="fecha" id="fecha" disabled required>
+                        <input id="cvc"type="number" placeholder="CVC" onKeyDown="limites(this,3);" onKeyUp="limites(this,3);"" required>
+                    </div>
+                </div>
+                <input id="enter" class="button"  onclick="validacion()" disabled="disabled"  value="Validar">
+            </form>
+        </div>
+        <div class="ventana" id="ventana">
+            <div class="MainVentana" id="MainVentana">
+                <a href="#" id="btn-exit" class="btn-exit">
+                    <i>
+                        <img id="close" src="img/exit.png" width="30" heigth="30" alt="">
+                    </i>
+                </a>
+                <h1 id="mensaje"></h1>
+                <img alt="" src="img/cot-loader.gif" id="ImgValida"/><br/>
+            </div>
+        </div>
+        
+    </main>
+    <script src="index.js"></script>
+</body>
+</html>
