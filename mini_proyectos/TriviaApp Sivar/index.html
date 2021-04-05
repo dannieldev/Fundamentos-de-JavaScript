@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="titulo">
-            <h1>TriviaApp Sivar</h1>
+            <h1><a href="index.html">TriviaApp Sivar</a></h1>
         </div>
     </header>
     <main backgrund="" class="container">
@@ -20,9 +20,9 @@
            <p>La mejor trivia para los salvadoreños</p>
        </div>
        <hr>
-       <form class="form">
+       <form class="form" id="formulario" method="POST"  action="play.html" >
             <label>Ingresa tu nombre</label>
-            <input type="text" placeholder="Nombre">
+            <input id="nombre" type="text" placeholder="Nombre" value="">
             <input type="submit" value="Iniciar">
        </form>
     </main>
@@ -33,5 +33,6 @@
             <li>2021</li>
           </ul>
     </footer>
+    <script src="index.js"></script>
 </body>
 </html>
