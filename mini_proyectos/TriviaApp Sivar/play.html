@@ -16,16 +16,20 @@
     <main backgrund="" class="container">
        <div class="principal-logo" >
            <img class="logo">
+           <p  id="nombre"></p>
            <h2>Elige la categoria que tu prefieras</h2>
            <p>¿Que tan salvadoreño eres?</p>
        </div>
        <hr>
-       <form class="form">
-            <label>Categorias de Trivia</label>
-            <input type="submit" value="Comidas Tipicas">
-            <input type="submit" value="Lugares Turisticos">
-            <input type="submit" value="Geografia">
-       </form>
+       <div class="form" id="form">
+            <h3 id="ItemsTitle">Categorias de Trivia</h3>
+            <p id="ItemsOne">Comidas Tipicas</p>
+            <p id="ItemsTwo">Lugares Turisticos</p>
+            <p id="ItemsThree">Geografia</p>
+       </div>
+       <div id="puntos" class="contador">
+           <p>Puntage: 10</p>
+       </div>
     </main>
     <footer class="footer container">
         <ul>
@@ -34,5 +38,6 @@
             <li>2021</li>
           </ul>
     </footer>
+    <script src="preguntas.js"></script>
 </body>
 </html>
