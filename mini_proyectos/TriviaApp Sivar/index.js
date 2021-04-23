@@ -7,7 +7,7 @@ function guardar_jugador(){
     let name = obtenerNombre()
     let jugador ={
         nombre: name,
-        puntaje:""    
+        puntaje:0    
     }
     // //localStorage.setItem("jugador",jugador);
     localStorage.setItem("jugador",JSON.stringify(jugador));

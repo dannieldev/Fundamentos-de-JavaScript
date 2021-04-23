@@ -5,6 +5,7 @@ const ItemsTitle = document.getElementById("ItemsTitle");
 const ItemsOne = document.getElementById("ItemsOne");
 const ItemsTwo = document.getElementById("ItemsTwo");
 const ItemsThree = document.getElementById("ItemsThree"); 
+const GetPuntos = document.getElementById("puntos");
 let categoria = null;
 let trivia = {
     "categoria":["Comidas Tipicas","Lugares Turisticos","Geografia"],
@@ -64,27 +65,27 @@ let trivia = {
             }]
         }],
         "preguntas1": [{
-            "pregunta" :"Lugar más alto del pais",
+            "pregunta" :"fLugar más alto del pais",
             "opcciones":[{
             "respuesta": "Pital",
-            "validar": false
+            "validar": true
             },{
             "respuesta": "Cerro Verde",
             "validar": false
             },{
             "respuesta": "La puerta del Diablo",
-            "validar": true
+            "validar": false
             }]
         }],
         "preguntas2": [{
-            "respuesta": "Olocuilta",
-            "validar": false
-            },{
-            "respuesta": "Quesaltepeque",
+            "pregunta" :"sLugar arqueologico",
+            "opcciones":[{
+            "respuesta": "EL puerto",
             "validar": true
             },{
-            "pregunta" :"Lugar arqueologico",
-            "opcciones":[{
+            "respuesta": "Parque Cuscatlan",
+            "validar": false
+            },{
             "respuesta": "Joya de Ceren",
             "validar": false
             }]
@@ -261,41 +262,56 @@ function Cualcategoria (categoria,i){
 
 function puntage(categoria,i,opccion){
     if(categoria == 1){
-        if(i==1 && opccion == 3){
+        if(i==1 && opccion == 3){-
             console.log("Es Correcta")
+            Setpuntage(33);
         }
         if(i==2 && opccion == 2){
             console.log("Es Correcta")
+            Setpuntage(33);
         }
         if(i==3 && opccion == 1){
             console.log("Es Correcta")
+            Setpuntage(34);
         }
     }
     if(categoria == 2){
         if(i==1 && opccion == 1){
             console.log("Es Correcta")
+            Setpuntage(33);
         }
         if(i==2 && opccion == 1){
             console.log("Es Correcta")
+            Setpuntage(33);
         }
         if(i==3 && opccion == 3){
             console.log("Es Correcta")
+            Setpuntage(34);
         }
     }
     if(categoria == 3){
         if(i==1 && opccion == 2){
             console.log("Es Correcta")
+            Setpuntage(33);
         }
         if(i==2 && opccion == 1){
             console.log("Es Correcta")
+            Setpuntage(33);
         }
         if(i==3 && opccion == 1){
             console.log("Es Correcta")
+            Setpuntage(34);
         }
     }
 }
 
-
+function Setpuntage(puntos){
+    let jugador = JSON.parse(localStorage.getItem("jugador"));
+    jugador.puntaje = jugador.puntaje + puntos;
+    GetPuntos.classList.remove('puntos')
+    GetPuntos.innerHTML = jugador.puntaje;
+    localStorage.setItem("jugador", JSON.stringify(jugador));
+}
 // Getnombre.addEventListener('change', (event) => {
 //     console.log(Getnombre.value)
 //     //const resultado = document.querySelector('.resultado');
