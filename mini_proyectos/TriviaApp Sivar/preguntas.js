@@ -1,333 +1,183 @@
-let nombre = document.getElementById("nombre");
-const formpreguntas = document.getElementById("form");
-const fromContainer = document.getElementById("form");
-const ItemsTitle = document.getElementById("ItemsTitle");
-const ItemsOne = document.getElementById("ItemsOne");
+const form = document.getElementById("form");
+const ItemsTitle = document.getElementById("ItemsTitle"); // Titulo y preguntas
+const ItemsOne = document.getElementById("ItemsOne"); 
 const ItemsTwo = document.getElementById("ItemsTwo");
-const ItemsThree = document.getElementById("ItemsThree"); 
-const GetPuntos = document.getElementById("puntos");
-let categoria = null;
-let trivia = {
-    "categoria":["Comidas Tipicas","Lugares Turisticos","Geografia"],
-    "tipicas": [{
-        "preguntas": [{
-            "pregunta" :"¿Si nunca la has comido no eres salvadoreño?",
-            "opcciones":[{
-            "respuesta": "Flor de Izote",
-            "validar": false
-            },{
-            "respuesta": "Papas Fritas",
-            "validar": false
-            },{
-            "respuesta": "Pupusas",
-            "validar": true
-            }]
-        }],
-        "preguntas1": [{
-            "pregunta" :"¿Es atol y no se baña?",
-            "opcciones":[{
-            "respuesta": "Ato de Maiz",
-            "validar": false
-            },{
-            "respuesta": "Atol Chuco",
-            "validar": true
-            },{
-            "respuesta": "Atol de Piñuela",
-            "validar": false
-            }]
-        }],
-        "preguntas2": [{
-            "pregunta" :"¿Es de maiz y esta mal de la cabezá?",
-            "opcciones":[{
-            "respuesta": "Elote loco",
-            "validar": false
-            },{
-            "respuesta": "Palomitas de maiz",
-            "validar": false
-            },{
-            "respuesta": "Tamales de elote",
-            "validar": true
-            }]
-        }]
-    }],
-    "lugares": [{
-        "preguntas": [{
-            "pregunta" :"Una playa con una gran piedra",
-            "opcciones":[{
-            "respuesta": "Playa El tunco",
-            "validar": false
-            },{
-            "respuesta": "Playa el Sonte",
-            "validar": false
-            },{
-            "respuesta": "Costa del Sol",
-            "validar": true
-            }]
-        }],
-        "preguntas1": [{
-            "pregunta" :"fLugar más alto del pais",
-            "opcciones":[{
-            "respuesta": "Pital",
-            "validar": true
-            },{
-            "respuesta": "Cerro Verde",
-            "validar": false
-            },{
-            "respuesta": "La puerta del Diablo",
-            "validar": false
-            }]
-        }],
-        "preguntas2": [{
-            "pregunta" :"sLugar arqueologico",
-            "opcciones":[{
-            "respuesta": "EL puerto",
-            "validar": true
-            },{
-            "respuesta": "Parque Cuscatlan",
-            "validar": false
-            },{
-            "respuesta": "Joya de Ceren",
-            "validar": false
-            }]
-        }]
-   }],
-   "geografia": [{
-    "preguntas": [{
-        "pregunta" :"Una playa con una gran piedra",
-        "opcciones":[{
-        "respuesta": "Costa del Sol",
-        "validar": false
-        },{
-        "respuesta": "Playa El tunco",
-        "validar": true
-        },{
-        "respuesta": "Playa el Sonte",
-        "validar": false
-        }]
-    }],
-    "preguntas1": [{
-        "pregunta" :"El lugar más alto del país",
-        "opcciones":[{
-        "respuesta": "EL pital",
-        "validar": true
-        },{
-        "respuesta": "El Boqueron",
-        "validar": false
-        },{
-        "respuesta": "La Puerta del Diablo",
-        "validar": false
-        }]
-    }],
-    "preguntas2": [{
-        "pregunta" :"Lugar arqueologico",
-        "opcciones":[{
-        "respuesta": "Joya de Ceren",
-        "validar": true
-        },{
-        "respuesta": "Parque Cuscatlan",
-        "validar": false
-        },{
-        "respuesta": "EL puerto",
-        "validar": false
-        }]
-    }]
-}]
-};
+const ItemsThree = document.getElementById("ItemsThree");
+const GetPuntos = document.getElementById("score");
 
-/*Funcion Cargar y Mostrar datos*/
-document.addEventListener ('DOMContentLoaded', function () { 
-    let memoryName =  JSON.parse(localStorage.getItem("jugador"));
-    // let memoryPreguntas =  JSON.parse(localStorage.getItem("preguntas"));
-    nombre.innerHTML = memoryName.nombre;
-    
-    // fromContainer.innerHTML +=`
-    // <label>Categorias de Trivia</label>
-    // <input id="categoriaUno" type="submit" value="${preguntas.Categoria[0]}">
-    // <input type="submit" value="${preguntas.Categoria[1]}">
-    // <input type="submit" value="${preguntas.Categoria[2]}">
-    // `;
-});
-console.log(fromContainer);
-let i=0;
+let categoria = null;  //Guardar cual categoria se selecciono 
+let i=0; //  Contador
+let j=0; //Contador  para ubicar en que categorias estas
+let check=0; //Para ubicar en que itemas se le da click
+let trivia = { // Preguntas
+    "categoria":["Comidas Tipicas","Lugares Turisticos","Geografia"],
+    "tipicas": {
+        0: {
+            "pregunta" :"¿Si nunca las has comido no eres salvadoreño?",
+            "opcciones":["Flor de Izote","Papas Fritas","Pupusas"],
+            "validar":2
+        },
+        1: {
+            "pregunta" :"¿Es atol y no se baña?",
+            "opcciones":["Atol de Maíz","Atol Chuco", "Atol de Piñuela"],
+            "validar": 1
+        },
+        2: {
+            "pregunta" :"¿Es de maíz y está mal de la cabeza?",
+            "opcciones":[ "Elote loco", "Palomitas de maiz","Tamales de elote"],
+            "validar": 0
+        }
+    },"lugares":{
+        0: {
+            "pregunta" :"Una playa donde practican surf y tiene una roca",
+            "opcciones":["Playa El tunco","Playa el Sonte","Costa del Sol"],
+            "validar":0
+        },
+        1: {
+            "pregunta" :"Lugar más alto de El Salvador",
+            "opcciones":["Cerro Verde","Pital", "La puerta del Diablo"],
+            "validar": 1
+        },
+        2: {
+            "pregunta" :"Lugar arqueologico de El Salvador",
+            "opcciones":[ "EL puerto", "Parque Cuscatlan","Joya de Ceren"],
+            "validar": 2
+        }
+    },"geografia":{
+        0: {
+            "pregunta" :"Cuantos departamentos tiene El Salvador",
+            "opcciones":["12","14","10"],
+            "validar":1
+        },
+        1: {
+            "pregunta" :"Departamento de El Salvador con Zona Costera",
+            "opcciones":["La Libertad","Santa Ana", "Morazán"],
+            "validar": 0
+        },
+        2: {
+            "pregunta" :"¿El Salvador es parte de?",
+            "opcciones":[ "America del Sur", "Europa","Centroamerica"],
+            "validar": 2
+        }
+    }
+
+};
+//Veficar en cual categoria se realizó el click
 ItemsOne.addEventListener("click", (a) => {
+    check = 0;
     if(categoria == null){
         categoria = 1;
     }
-    Cualcategoria(categoria,i);
-    puntage(categoria,i,1);
+    score(categoria,i,check);
+    WCategory(categoria,i,check);
     i++;
 });
 ItemsTwo.addEventListener("click", (b) => {
+    check = 1;
     if(categoria == null){
         categoria = 2;
     }
-    Cualcategoria(categoria,i);
-    puntage(categoria,i,2);
+    score(categoria,i,check);
+    WCategory(categoria,i,check);
     i++;
 });
-
 ItemsThree.addEventListener("click", (c) => {
+    check = 2;
     if(categoria == null){
         categoria = 3;
-    }    
-    Cualcategoria(categoria,i);
-    puntage(categoria,i,3);
-    i++
+    }
+    score(categoria,i,check);
+    WCategory(categoria,i,check);
+    i++;
 });
-function Cualcategoria (categoria,i){
-    console.log(i);
-    if(categoria == 1 ){
-        console.log("categoria 1");
-        switch(i){
-            case 0: 
-                console.log("pupusas")
-                ItemsTitle.innerHTML =`${trivia.tipicas[0].preguntas[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.tipicas[0].preguntas[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.tipicas[0].preguntas[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.tipicas[0].preguntas[0].opcciones[2].respuesta}`;
-                break
-            case 1: 
-                ItemsTitle.innerHTML =`${trivia.tipicas[0].preguntas1[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.tipicas[0].preguntas1[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.tipicas[0].preguntas1[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.tipicas[0].preguntas1[0].opcciones[2].respuesta}`;
-                break
-            case 2: 
-                ItemsTitle.innerHTML =`${trivia.tipicas[0].preguntas2[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.tipicas[0].preguntas2[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.tipicas[0].preguntas2[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.tipicas[0].preguntas2[0].opcciones[2].respuesta}`;
-                break
-            default:
-                console.log("Error")
-                break
-        }
+//Mostar Opciones en el DOM
+function WCategory (categoria,i){
+    setTimeout(function() {
+    if(categoria == 1 & i <=2){
+        console.log("cate 1");
+            ItemsTitle.innerHTML =`${trivia.tipicas[i].pregunta}`;
+            ItemsOne.innerHTML =`${trivia.tipicas[i].opcciones[0]}`;
+            ItemsTwo.innerHTML =`${trivia.tipicas[i].opcciones[1]}`;
+            ItemsThree.innerHTML =`${trivia.tipicas[i].opcciones[2]}`;
+            console.log(i);
+            ItemsOne.style.background = "";
+            ItemsTwo.style.background = "";
+            ItemsThree.style.background = "";
+        
+    }else if (categoria == 2 & i <=2){
+        console.log("cate 2");
+            ItemsTitle.innerHTML =`${trivia.lugares[i].pregunta}`;
+            ItemsOne.innerHTML =`${trivia.lugares[i].opcciones[0]}`;
+            ItemsTwo.innerHTML =`${trivia.lugares[i].opcciones[1]}`;
+            ItemsThree.innerHTML =`${trivia.lugares[i].opcciones[2]}`;
+            console.log(i);
+            ItemsOne.style.background = "";
+            ItemsTwo.style.background = "";
+            ItemsThree.style.background = "";
+    }else if (categoria == 3 & i <=2){
+        console.log("cate 2");
+            ItemsTitle.innerHTML =`${trivia.geografia[i].pregunta}`;
+            ItemsOne.innerHTML =`${trivia.geografia[i].opcciones[0]}`;
+            ItemsTwo.innerHTML =`${trivia.geografia[i].opcciones[1]}`;
+            ItemsThree.innerHTML =`${trivia.geografia[i].opcciones[2]}`;
+            console.log(i);
+            ItemsOne.style.background = "";
+            ItemsTwo.style.background = "";
+            ItemsThree.style.background = "";
+    }else{
+        location.href="fin.html";
     }
-    if(categoria == 2 ) {
-        console.log ("cate 2");
-        switch(i){
-            case 0: 
-                console.log("Lugares")
-                ItemsTitle.innerHTML =`${trivia.lugares[0].preguntas[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.lugares[0].preguntas[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.lugares[0].preguntas[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.lugares[0].preguntas[0].opcciones[2].respuesta}`;
-                break
-            case 1: 
-                ItemsTitle.innerHTML =`${trivia.lugares[0].preguntas1[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.lugares[0].preguntas1[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.lugares[0].preguntas1[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.lugares[0].preguntas1[0].opcciones[2].respuesta}`;
-                break
-            case 2: 
-                ItemsTitle.innerHTML =`${trivia.lugares[0].preguntas2[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.lugares[0].preguntas2[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.lugares[0].preguntas2[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.lugares[0].preguntas2[0].opcciones[2].respuesta}`;
-                break
-            default:
-                console.log("Error")
-                break
+    }, 1000); // Fin del SetTimeout
+}
+//Verificar recpuestas correctas e incorrectas 
+function score(categoria,i,check){
+    if(i > 0 & j <= 2){
+        if(categoria == 1 & trivia.tipicas[j].validar == check){
+            Correcto(check);
+
+        }else if (categoria == 2 & trivia.lugares[j].validar == check){ 
+            console.log("lugar");
+            Correcto(check);
+        }else if (categoria == 3 & trivia.geografia[j].validar == check){ 
+            console.log("geogra");
+            Correcto(check);
+        }else{
+            inCorrecto(check);
         }
+        j++;
     } 
-    if(categoria == 3) {
-        console.log ("cate 3");
-        switch(i){
-            case 0: 
-                console.log("Lugares")
-                ItemsTitle.innerHTML =`${trivia.geografia[0].preguntas[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.geografia[0].preguntas[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.geografia[0].preguntas[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.geografia[0].preguntas[0].opcciones[2].respuesta}`;
-                break
-            case 1: 
-                ItemsTitle.innerHTML =`${trivia.geografia[0].preguntas1[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.geografia[0].preguntas1[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.geografia[0].preguntas1[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.geografia[0].preguntas1[0].opcciones[2].respuesta}`;
-                break
-            case 2: 
-                ItemsTitle.innerHTML =`${trivia.geografia[0].preguntas2[0].pregunta}`;
-                ItemsOne.innerHTML =`${trivia.geografia[0].preguntas2[0].opcciones[0].respuesta}`;
-                ItemsTwo.innerHTML =`${trivia.geografia[0].preguntas2[0].opcciones[1].respuesta}`;
-                ItemsThree.innerHTML =`${trivia.geografia[0].preguntas2[0].opcciones[2].respuesta}`;
-                break
-            default:
-                console.log("Error")
-                break
-        }
-    }
-    
 }
 
-function puntage(categoria,i,opccion){
-    if(categoria == 1){
-        if(i==1 && opccion == 3){-
-            console.log("Es Correcta")
-            Setpuntage(33);
-        }
-        if(i==2 && opccion == 2){
-            console.log("Es Correcta")
-            Setpuntage(33);
-        }
-        if(i==3 && opccion == 1){
-            console.log("Es Correcta")
-            Setpuntage(34);
-        }
+//Cambiar color en el DOM
+function Correcto(check){
+    if(check==0){
+        ItemsOne.style.background = "green";
+        Setpuntaje(33);
     }
-    if(categoria == 2){
-        if(i==1 && opccion == 1){
-            console.log("Es Correcta")
-            Setpuntage(33);
-        }
-        if(i==2 && opccion == 1){
-            console.log("Es Correcta")
-            Setpuntage(33);
-        }
-        if(i==3 && opccion == 3){
-            console.log("Es Correcta")
-            Setpuntage(34);
-        }
+    if(check==1){
+        ItemsTwo.style.background = "green";
+        Setpuntaje(33);
     }
-    if(categoria == 3){
-        if(i==1 && opccion == 2){
-            console.log("Es Correcta")
-            Setpuntage(33);
-        }
-        if(i==2 && opccion == 1){
-            console.log("Es Correcta")
-            Setpuntage(33);
-        }
-        if(i==3 && opccion == 1){
-            console.log("Es Correcta")
-            Setpuntage(34);
-        }
+    if(check==2){
+        ItemsThree.style.background = "green";
+        Setpuntaje(34);
     }
 }
-
-function Setpuntage(puntos){
+function inCorrecto(check){
+    if(check==0){
+        ItemsOne.style.background= "red";
+    }
+    if(check==1){
+        ItemsTwo.style.background= "red";
+    }
+    if(check==2){
+        ItemsThree.style.background= "red";
+    }
+}
+// Obtener puntaje y almacenarlo
+function Setpuntaje(score){
     let jugador = JSON.parse(localStorage.getItem("jugador"));
-    jugador.puntaje = jugador.puntaje + puntos;
-    GetPuntos.classList.remove('puntos')
+    jugador.puntaje = jugador.puntaje + score;
     GetPuntos.innerHTML = jugador.puntaje;
     localStorage.setItem("jugador", JSON.stringify(jugador));
 }
-// Getnombre.addEventListener('change', (event) => {
-//     console.log(Getnombre.value)
-//     //const resultado = document.querySelector('.resultado');
-//     //resultado.textContent = `Te gusta el sabor ${event.target.value}`;
-// });
-
-// console.log(campo)
-// Getnombre.addEventListener('change',guardar_jugador);
-
-// function obtner_jugador(){
-//     if(localStorage.getItem("jugador")){
-//         //let 1jugador = localStorage.getItems("jugador");
-//         let jugador = JSON.parse(localStorage.getItem("jugador"))
-//     }else{
-//         console.log("Aun no inicias la partidad")
-//     }
-    
-//     console.log(nombre);
-// }
