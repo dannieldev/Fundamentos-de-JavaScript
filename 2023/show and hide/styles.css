@@ -1,0 +1,12 @@
+/* styles.css */
+.mostrar {
+    display: none;
+}
+.elementos{
+    width: 100px;
+    background-color: aquamarine;
+    padding: 30px;
+    margin: 5px;
+    border-radius: 15px;
+    border: 1px solid rebeccapurple;
+}
